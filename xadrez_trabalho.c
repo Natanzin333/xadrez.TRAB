@@ -120,9 +120,89 @@ int direcaoBispo;
     } while (r < 8); //e aqui o do-while vai rodar 8 vezes
 
     printf("==========================\n");
-    printf("Jogo finalizado! Valeu por jogar!\n");
+ 
+
+    //Movimento do Cavalo com Loop Aninhado 
+
+   
+    printf("\n--- Movimento do Cavalo ---\n");
+
+    printf("Escolha o movimento do Cavalo:\n");
+    printf("Digite 1 para cima, direita.\n");
+    printf("Digite 2 para cima, esquerda.\n");
+    printf("Digite 3 para baixo, direita.\n");
+    printf("Digite 4 para baixo, esquerda.\n");
+    printf("Digite 5 para direita, cima.\n");
+    printf("Digite 6 para direita, baixo.\n");
+    printf("Digite 7 para esquerda, cima.\n");
+    printf("Digite 8 para esquerda, baixo.\n");
+    printf("===========================\n");
+    printf("Digite sua opção: \n");
+    printf("===========================\n");
+
+    int movimentoCavalo;
+    scanf("%d", &movimentoCavalo);
+
+    printf("Movimento: %d\n", movimentoCavalo);
+
+    int movimentoCompleto = 1; // aqui o movimento completo vai rodar 1 vez
+    
+    while (movimentoCompleto--) {
+        if (movimentoCavalo == 1) {
+            for (int i = 0; i < 2; i++) {
+                printf("Cima\n");
+            }
+            printf("Direita\n");
+        } 
+        else if (movimentoCavalo == 2) {
+            for (int i = 0; i < 2; i++) {
+                printf("Cima\n");
+            }
+            printf("Esquerda\n");
+        } 
+        else if (movimentoCavalo == 3) {
+            for (int i = 0; i < 2; i++) {
+                printf("Baixo\n");
+            }
+            printf("Direita\n");
+        } 
+        else if (movimentoCavalo == 4) {
+            for (int i = 0; i < 2; i++) {
+                printf("Baixo\n");
+            }
+            printf("Esquerda\n");
+        } 
+        else if (movimentoCavalo == 5) {
+            for (int i = 0; i < 2; i++) {
+                printf("Direita\n");
+            }
+            printf("Cima\n");
+        } 
+        else if (movimentoCavalo == 6) {
+            for (int i = 0; i < 2; i++) {
+                printf("Direita\n");
+            }
+            printf("Baixo\n");
+        }
+        else if (movimentoCavalo == 7) {
+            for (int i = 0; i < 2; i++) {
+                printf("Esquerda\n");
+            }
+            printf("Cima\n");
+        } 
+        else if (movimentoCavalo == 8) {
+            for (int i = 0; i < 2; i++) {
+                printf("Esquerda\n");
+            }
+            printf("Baixo\n");
+        }
+         else {
+            printf("Movimento inválido!\n");
+        }
+    }
+
     printf("==========================\n");
-        
+    printf("Obrigado por jogar!\n");
     
 
 
