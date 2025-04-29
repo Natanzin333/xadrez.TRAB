@@ -1,127 +1,145 @@
-#include    <stdio.h>
+#include <stdio.h>
 
-int main(){
-
-    //Jogo de Xadrez
-
-    //Menu 
-    printf("Bem vindo ao jogo de xadrez!\n");
-    printf("Escolha uma opcao:\n");
-    printf("1 - Jogar\n");
-    printf("2 - Sair\n");
-    printf("Digite a opcao desejada:\n");
-   
-    int opcao;
-    scanf("%d", &opcao);
-    //Verifica a opcao escolhida
-    
-    if (opcao == 1) {
-        printf("Voce escolheu jogar!\n");
-
-    } else if (opcao == 2) {
-        printf("Voce escolheu sair!\n");
-        return 0; // Encerra o jogo
-
-    } else {
-        printf("Opcao invalida!\n");
-        return 1; // Sai com erro
+// Função para mover a Torre
+void moverTorre(int direcao, int passosRestantes) {
+    if (passosRestantes == 0) {
+        return;
     }
 
-    //Tabuleiro
-    printf("Vamos começar movendo a Torre, depois o Bispo e por último a Rainha.\n");
-
-    // Movimentos da TORRE
-printf("Escolha o movimento da Torre:\n");
-printf("Digite 1 para cima, 2 para baixo, 3 para esquerda ou 4 para direita:\n");
-
-int movimentoTorre;
-scanf("%d", &movimentoTorre);
-
-// FOR para repetir o movimento da Torre 5 vezes
-for (int i = 0; i < 5; i++) {
-    if (movimentoTorre == 1) {
-        printf("Movimento %d: Torre para cima!\n", i + 1);
-    } else if (movimentoTorre == 2) {
-        printf("Movimento %d: Torre para baixo!\n", i + 1);
-    } else if (movimentoTorre == 3) {
-        printf("Movimento %d: Torre para esquerda!\n", i + 1);
-    } else if (movimentoTorre == 4) {
-        printf("Movimento %d: Torre para direita!\n", i + 1);
-    } else {
-        printf("Opcao invalida!\n");
+    switch (direcao) {
+        case 1:
+            printf("Torre se moveu para CIMA!\n");
+            break;
+        case 2:
+            printf("Torre se moveu para BAIXO!\n");
+            break;
+        case 3:
+            printf("Torre se moveu para ESQUERDA!\n");
+            break;
+        case 4:
+            printf("Torre se moveu para DIREITA!\n");
+            break;
+        default:
+            printf("Direção inválida para a Torre!\n");
+            return;
     }
+
+    moverTorre(direcao, passosRestantes - 1);
 }
 
-// Movimentos do BISPO
-
-printf("==========================\n");
-printf("Agora vamos mover o Bispo!\n");
-
-int direcaoBispo;
-
-    printf("Escolha a direção do movimento do Bispo:\n");
-    printf("1 - Diagonal Cima + Direita.\n");
-    printf("2 - Diagonal Cima + Esquerda.\n");
-    printf("3 - Diagonal Baixo + Direita.\n");
-    printf("4 - Diagonal Baixo + Esquerda.\n");
-    printf("Digite sua opção: \n");
-    scanf("%d", &direcaoBispo);
-
-    int b = 0;
-
-    while (b < 5) { //aqui o while vai rodar 5 vezes
-        if (direcaoBispo == 1) {
-            printf("Movimento %d: Cima, Direita.\n", b + 1);
-        } else if (direcaoBispo == 2) {
-            printf("Movimento %d: Cima, Esquerda.\n", b + 1);
-        } else if (direcaoBispo == 3) {
-            printf("Movimento %d: Baixo, Direita.\n", b + 1);
-        } else if (direcaoBispo == 4) {
-            printf("Movimento %d: Baixo, Esquerda.\n", b + 1);
-        } else {
-            printf("Opção inválida! Encerrando movimentos.\n");
-            break; // sai do loop se a opção for inválida
-        }
-
-        b++;
+// Função para mover o Bispo
+void moverBispo(int direcao, int passosRestantes) {
+    if (passosRestantes == 0) {
+        return; // Caso base, parar recursao
     }
 
-    // Movimentos da RAINHA
-    //Usando Do-While para repetir o movimento da Rainha 8 vezes
-    
-    printf("==========================\n");
-    printf("Agora vamos mover a Rainha!\n");
-    printf("Escolha o movimento da Rainha:\n");
-    printf("Digite 1 para cima, 2 para baixo, 3 para esquerda ou 4 para direita:\n");
-    
-    int movimentoRainha;
-    scanf("%d", &movimentoRainha);
-
-    int r = 0;
-
-    do {
-        if (movimentoRainha == 1) {
-            printf("Movimento %d: Rainha para cima!\n", r + 1); //o r + 1 vai imprimir o movimento oito vezes
-        } else if (movimentoRainha == 2) {
-            printf("Movimento %d: Rainha para baixo!\n", r + 1);
-        } else if (movimentoRainha == 3) {
-            printf("Movimento %d: Rainha para esquerda!\n", r + 1);
-        } else if (movimentoRainha == 4) {
-            printf("Movimento %d: Rainha para direita!\n", r + 1);
+    // Loops aninhados: primeiro move na vertical (i), depois horizonte (j)
+    for (int i = 0; i < 1; i++) { // Vertical (sobe ou desce 1 unidade)
+        for (int j = 0; j < 1; j++) { // Horizontal (vai para direita ou esquerda 1 unidade)
+            switch (direcao) {
+                case 1:
+                    printf("Bispo se moveu para DIAGONAL CIMA DIREITA!\n");
+                    break;
+                case 2:
+                    printf("Bispo se moveu para DIAGONAL CIMA ESQUERDA!\n");
+                    break;
+                case 3:
+                    printf("Bispo se moveu para DIAGONAL BAIXO DIREITA!\n");
+                    break;
+                case 4:
+                    printf("Bispo se moveu para DIAGONAL BAIXO ESQUERDA!\n");
+                    break;
+                default:
+                    printf("Direção inválida para o Bispo!\n");
+                    return;
+            }
         }
-         
-        else {
-            printf("Opcao invalida! Encerrando movimentos.\n");
-            break; // sai do loop se a opção for inválida
-        }
+    }
 
-        r++; //aqui incrementa o +1 no contador
+    moverBispo(direcao, passosRestantes - 1); // Chamada recursiva
+}
+
+//Função para mover a Rainha
+
+void moverRainha(int direcao, int passosRestantes){
+    if (passosRestantes == 0) {
+        return;
+    } 
+    switch (direcao)
+    {
+        case 1:
+            printf("Rainha se moveu para CIMA!\n");
+            break;
+        case 2:
+            printf("Rainha se moveu para BAIXO!\n");
+            break;
+        case 3:
+            printf("Rainha se moveu para ESQUERDA!\n");
+            break;
+        case 4:
+            printf("Rainha se moveu para DIREITA!\n");
+            break;
+        default:
+            printf("Direção inválida para a Rainha!\n");
+            return;
+    } 
+            moverRainha(direcao, passosRestantes-1);
+}
+
+int main() {
+    int opcao;
+
+    // Menu Inicial
+    printf("Bem-vindo ao jogo de xadrez!\n");
+    printf("Escolha uma opção:\n");
+    printf("1 - Jogar\n");
+    printf("2 - Sair\n");
+    printf("Digite a opção desejada: \n");
+    scanf("%d", &opcao);
+
+    if (opcao == 1) {
+        printf("Você escolheu jogar!\n");
+    } else if (opcao == 2) {
+        printf("Você escolheu sair!\n");
+        return 0;
+    } else {
+        printf("Opção inválida!\n");
+        return 1;
+    }
     
-    } while (r < 8); //e aqui o do-while vai rodar 8 vezes
+    // Tabuleiro
+    printf("===========================\n");
+    printf("\nVamos começar movendo as peças!\n");
+    printf("===========================\n");
 
-    printf("==========================\n");
- 
+    // Movimentos da Torre
+    int direcaoTorre;
+    printf("\nMovimentos da TORRE\n");
+    printf("Digite 1 para cima, 2 para baixo, 3 para esquerda, 4 para direita: \n");
+    scanf("%d", &direcaoTorre);
+    printf("============================\n");
 
+    moverTorre(direcaoTorre, 5); // Move a torre 5 vezes
+
+    // Movimentos do Bispo
+    int direcaoBispo;
+    printf("\nMovimentos do BISPO\n");
+    printf("Digite 1 para superior direita, 2 para superior esquerda, 3 para inferior direita, 4 para inferior esquerda: \n");
+    scanf("%d", &direcaoBispo);
+    printf("============================\n");
+
+    moverBispo(direcaoBispo, 5); // Move o bispo 5 vezes
+
+    //Movimentos da Rainha
+    int direcaoRainha;
+    printf("\nMovimentos da RAINHA\n");
+    printf("Digite 1 para cima, 2 para baixo, 3 para esquerda, 4 para direita: \n");
+    scanf("%d", &direcaoRainha);
+    printf("============================\n");
+    
+    moverRainha(direcaoRainha, 8); // Move a rainha 8 vezes
+
+    
     //Movimento do Cavalo com Loop Aninhado 
 
    
@@ -144,57 +162,58 @@ int direcaoBispo;
     scanf("%d", &movimentoCavalo);
 
     printf("Movimento: %d\n", movimentoCavalo);
+    printf("Cavalo se moveu para: \n");
 
     int movimentoCompleto = 1; // aqui o movimento completo vai rodar 1 vez
     
     while (movimentoCompleto--) {
         if (movimentoCavalo == 1) {
             for (int i = 0; i < 2; i++) {
-                printf("Cima\n");
+                printf("CIMA\n");
             }
-            printf("Direita\n");
+            printf("DIREITA\n");
         } 
         else if (movimentoCavalo == 2) {
             for (int i = 0; i < 2; i++) {
-                printf("Cima\n");
+                printf("CIMA\n");
             }
-            printf("Esquerda\n");
+            printf("ESQUERDA\n");
         } 
         else if (movimentoCavalo == 3) {
             for (int i = 0; i < 2; i++) {
-                printf("Baixo\n");
+                printf("BAIXO\n");
             }
-            printf("Direita\n");
+            printf("DIREITA\n");
         } 
         else if (movimentoCavalo == 4) {
             for (int i = 0; i < 2; i++) {
-                printf("Baixo\n");
+                printf("BAIXO\n");
             }
-            printf("Esquerda\n");
+            printf("ESQUERDA\n");
         } 
         else if (movimentoCavalo == 5) {
             for (int i = 0; i < 2; i++) {
-                printf("Direita\n");
+                printf("DIREITA\n");
             }
-            printf("Cima\n");
+            printf("CIMA\n");
         } 
         else if (movimentoCavalo == 6) {
             for (int i = 0; i < 2; i++) {
-                printf("Direita\n");
+                printf("DIREITA\n");
             }
-            printf("Baixo\n");
+            printf("BAIXO\n");
         }
         else if (movimentoCavalo == 7) {
             for (int i = 0; i < 2; i++) {
-                printf("Esquerda\n");
+                printf("ESQUERDA\n");
             }
-            printf("Cima\n");
+            printf("CIMA\n");
         } 
         else if (movimentoCavalo == 8) {
             for (int i = 0; i < 2; i++) {
-                printf("Esquerda\n");
+                printf("ESQUERDA\n");
             }
-            printf("Baixo\n");
+            printf("BAIXO\n");
         }
          else {
             printf("Movimento inválido!\n");
@@ -202,12 +221,10 @@ int direcaoBispo;
     }
 
     printf("==========================\n");
+    printf("Fim do jogo.\n");
     printf("Obrigado por jogar!\n");
+
     
-
-
- 
-
 
     return 0;
 }
